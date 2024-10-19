@@ -15,4 +15,12 @@ export default defineConfig({
 			},
 		},
 	},
+	build: {
+		rollupOptions: {
+		  external: ['@chakra-ui/react', '@chakra-ui/avatar','@chakra-ui/image'],
+		},
+	  },
 });
+
+
+  

@@ -1,6 +1,6 @@
 import { Avatar } from "@chakra-ui/avatar";
 import { Image } from "@chakra-ui/image";
-import { Box, Flex, Text } from "@chakra-ui/layout";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Actions from "./Actions";
 import { useEffect, useState } from "react";
@@ -36,7 +36,6 @@ const Post = ({ post, postedBy, activeTab }) => {
   const currentUser = useRecoilValue(userAtom);
   const [posts, setPosts] = useRecoilState(postsAtom);
   const navigate = useNavigate();
-  console.log('active tab value is',activeTab)
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [reportLoading, setReportLoading] = useState(false);

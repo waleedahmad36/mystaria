@@ -1,4 +1,4 @@
-import { Box, Container, useDisclosure, useBreakpointValue, useColorMode } from "@chakra-ui/react";
+import { Box, useDisclosure, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import UserPage from "./pages/UserPage";
 import PostPage from "./pages/PostPage";
@@ -21,9 +21,7 @@ import MobileNav from "./components/MobileNav";
 import NotificationsPage from "./pages/NotificationPage";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import StatusBar from "./components/StatusBar";
 import Event from "./pages/Event";
-import StatusPage from "./pages/Status";
 
 function App() {
 	const { colorMode } = useColorMode();
@@ -108,7 +106,6 @@ function App() {
 						<Route path='/jvform' element={user ? <JarvisForm /> : <Navigate to={"/auth"} />} />
 						<Route path='/jarvis' element={user ? <Work /> : <Navigate to={"/auth"} />} />
 						<Route path='/mystaria' element={user ? <Mystaria /> : <Navigate to={"/auth"} />} />
-						<Route path='/status' element={user ? <StatusPage /> : <Navigate to={"/auth"} />} />
 					</Routes>
 				</Box>
 			</Box>

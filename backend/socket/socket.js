@@ -7,12 +7,10 @@ import Conversation from "../models/conversationModel.js";
 
 const app = express();
 const server = http.createServer(app);
-// origin: "http://localhost:3000",
 
 const io = new Server(server, {
     cors: {
-        // origin:[process.env.FRONT_URL_ONE,process.env.FRONT_URL_TWO],
-        origin: process.env.FRONT_URL_TWO,
+        origin: '/',
         methods: ["GET", "POST"],
     },
 
