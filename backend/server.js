@@ -17,6 +17,8 @@ import statusRoutes from './routes/statusRoute.js'
 import {v2 as cloudinary} from "cloudinary"
 import { app,server } from "./socket/socket.js";
 dotenv.config();
+
+
 connectDb();
 
 const PORT=process.env.PORT || 5000;
