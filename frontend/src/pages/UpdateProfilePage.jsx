@@ -129,6 +129,7 @@ export default function UpdateProfilePage() {
 							onChange={(e) => setInputs({ ...inputs, bio: e.target.value })}
 							_placeholder={{ color: "gray.500" }}
 							type='text'
+							maxLength={40}
 						/>
 					</FormControl>
 					<FormControl>

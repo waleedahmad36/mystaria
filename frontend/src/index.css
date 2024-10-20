@@ -87,3 +87,12 @@ body {
 .in-bg{
 	background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('hero.png');
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+  }
+  
+  .scrollbar-hide {
+	-ms-overflow-style: none; /* Internet Explorer 10+ */
+	scrollbar-width: none; /* Firefox */
+  }

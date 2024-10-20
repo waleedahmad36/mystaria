@@ -260,6 +260,8 @@ const Post = ({ post, postedBy, activeTab }) => {
               ml={3}
               onClick={handleReportSubmit}
               isLoading={reportLoading}
+              bg={theme}
+              color={'white'}
             >
               Send Report
             </Button>

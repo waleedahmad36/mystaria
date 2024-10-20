@@ -252,13 +252,13 @@ const ChatPage = () => {
             const res = await fetch(`/api/users/profile/${searchText}`);
             const searchedUser = await res.json();
             if (searchedUser.error) {
-                showToast("Error", searchedUser.error, "error");
+                showToast(searchedUser.error, "User not found", "error");
                 return;
             }
 
             const messagingYourself = searchedUser._id === currentUser._id;
             if (messagingYourself) {
-                showToast("Error", "You cannot message yourself", "error");
+                showToast("That's yur own name", "You cannot message yourself", "error");
                 return;
             }
 

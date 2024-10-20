@@ -152,9 +152,14 @@ const StatusBar = () => {
     <div className="relative w-full pl-4 flex items-center group">
       <div className="relative w-full">
         <div
-          className="flex space-x-4 overflow-x-auto no-scrollbar"
+          className="flex space-x-4 overflow-x-auto scrollbar-hide"
           ref={sliderRef}
-          style={{ scrollBehavior: 'smooth', overflowX: 'hidden' }}
+          style={{
+            scrollBehavior: 'smooth',
+            overflowX: 'auto', 
+            WebkitOverflowScrolling: 'touch', 
+          }}
+          
         >
           {/* Plus icon to add a new status */}
           <div className="flex-shrink-0">
