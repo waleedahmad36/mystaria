@@ -1,6 +1,6 @@
-import { Box, VStack, Icon, Text, useColorMode, useColorModeValue, Button } from "@chakra-ui/react";
+import { Box, VStack, Icon, Text,  useColorModeValue, Button } from "@chakra-ui/react";
 import { AiFillHome } from "react-icons/ai";
-import { MdOutlineSettings, MdPersonSearch, MdOutlineDashboardCustomize } from "react-icons/md";
+import { MdOutlineSettings, MdPersonSearch } from "react-icons/md";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -90,10 +90,7 @@ const MobileNav = ({ isOpen, onToggle }) => {
 								size="md"
 								bg={theme}
 								color={'white'}
-								onClick={()=>{ 
-                  ontoggle();
-                  logout();
-                }}
+								onClick={logout}
 								leftIcon={<FiLogOut />}
 							>
 								Logout

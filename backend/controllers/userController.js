@@ -72,13 +72,11 @@ const signupUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-	console.log("hitting")
 	try {
 		const { username, password } = req.body;
 		const user = await User.findOne({ username });
 		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
-		console.log('yhn b aa gayee')
 		if (!user || !isPasswordCorrect) return res.status(400).json({ error: "Invalid username or password" });
 
 		if (user.isFrozen) {
@@ -88,7 +86,6 @@ const loginUser = async (req, res) => {
 
 		generateTokenAndSetCookie(user._id, res);
 
-		console.log('yhn pr b ')
 		res.status(200).json({
 			_id: user._id,
 			name: user.name,
