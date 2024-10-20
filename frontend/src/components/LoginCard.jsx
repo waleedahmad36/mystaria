@@ -65,7 +65,7 @@ export default function LoginCard() {
 			px={3} // Adjust this for better spacing
 			w={"full"} // Use full width
 		>
-			<Text  fontSize={{base:'2xl',md:'4xl'}} >Login to your account</Text>
+			<Text  fontSize={{base:'2xl',md:'4xl'}}  mb={{base:2,md:0}}   >Login to your account</Text>
 			<Stack spacing={4}>
 				<FormControl isRequired>
 					<FormLabel>Username</FormLabel>
