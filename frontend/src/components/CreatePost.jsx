@@ -57,6 +57,10 @@ const CreatePost = () => {
 	};
 
 	const handleCreatePost = async () => {
+		if(!postText || !imgUrl){
+			showToast("fields are blank","error","error");
+			return;
+		}
 		setLoading(true);
 		try {
 			const res = await fetch("/api/posts/create", {
@@ -92,7 +96,7 @@ const CreatePost = () => {
 			<Button
 			position={"fixed"}
 			top={{
-				base:'20vh',
+				base:'21vh',
 				md:'70vh'
 			}}
 			right={5}

@@ -73,7 +73,17 @@ body {
 }
 
 
-
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hidden {
+	overflow-y: auto; /* Enable vertical scrolling */
+	scrollbar-width: none; /* For Firefox */
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+	display: none; /* For Chrome, Safari, and other WebKit browsers */
+  }
 
   
-  
+.in-bg{
+	background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('hero.png');
+}

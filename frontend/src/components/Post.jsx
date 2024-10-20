@@ -29,7 +29,6 @@ import {
 import themeAtom from "../atoms/themeAtom";
 
 const Post = ({ post, postedBy, activeTab }) => {  
-  console.log('post is',post)
   const theme = useRecoilValue(themeAtom); 
   const [user, setUser] = useState(null);
   const showToast = useShowToast();
@@ -66,7 +65,6 @@ const Post = ({ post, postedBy, activeTab }) => {
         }
         setUser(data);
       } catch (error) {
-        // console.log(error);
         console.log(error)
         setUser(null);
       }
@@ -145,7 +143,7 @@ const Post = ({ post, postedBy, activeTab }) => {
             {post.replies[0] && (
               <Avatar
                 size='xs'
-                name='John doe'
+                name={post.replies[0].userId.username || post.replies[0].username}
                 src={post.replies[0].userId.profilePic || post.replies[0].userProfilePic}
                 position={"absolute"}
                 top={"0px"}
@@ -157,7 +155,7 @@ const Post = ({ post, postedBy, activeTab }) => {
             {post.replies[1] && (
               <Avatar
                 size='xs'
-                name='John doe'
+                name={post.replies[1].userId.username || post.replies[1].username}
                 src={post.replies[1].userId.profilePic || post.replies[1].userProfilePic}
                 position={"absolute"}
                 bottom={"0px"}
@@ -169,7 +167,7 @@ const Post = ({ post, postedBy, activeTab }) => {
             {post.replies[2] && (
               <Avatar
                 size='xs'
-                name='John doe'
+                name={post.replies[2].userId.username || post.replies[2].username}
                 src={post.replies[2].userId.profilePic || post.replies[2].userProfilePic}
                 position={"absolute"}
                 bottom={"0px"}

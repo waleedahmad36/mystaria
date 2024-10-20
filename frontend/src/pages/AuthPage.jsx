@@ -5,8 +5,11 @@ import authScreenAtom from "../atoms/authAtom";
 import { useEffect, useState } from "react";
 import { Box, Button, Flex, Input, Text, theme, useColorMode } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import useShowToast from "../hooks/useShowToast";
+import Login from "../components/Login";
 
 const AuthPage = () => {
+	const showToast = useShowToast();
 	const authScreenState = useRecoilValue(authScreenAtom);
 	const [loading,setLoading] = useState(false)
 	const [authentic,setAuthentic] = useState(false);
@@ -21,6 +24,7 @@ const AuthPage = () => {
 			const res = await fetch('/api/code');
 			const data = await res.json();
 			setCode(data[0].text);
+			console.log('code is',code)
 		} catch (error) {
 			console.log(error);
 		}
@@ -30,6 +34,9 @@ const AuthPage = () => {
 		setLoading(true);
 		if(code === userCode){
 			setAuthentic(true);
+			showToast("you can register now","success","success")
+		}else{
+			showToast("invalid code","error","error")
 		}
 		setLoading(false)
 	}
@@ -39,7 +46,8 @@ const AuthPage = () => {
 		getCode();
 	},[])
 	return <>
-	<div  className="md:flex md:justify-around" >
+	<div  className="md:flex md:justify-around " >
+		<div className=""  > 
 	{authScreenState === "login" ? <LoginCard /> : authentic ? <SignupCard />  : (
 		<>
 		<Box  minW={'40vw'}  mt={{base:'20',md:'2'}}    px={3}   >
@@ -54,6 +62,8 @@ const AuthPage = () => {
 		</Box>
 		</>
 	)  }
+
+</div>
 	<img src='m.png' alt=""  className="h-[80vh] max-w-[50vw] hidden lg:block"  />
 	</div>
 	</>;

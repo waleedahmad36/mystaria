@@ -9,7 +9,6 @@ import {
 	InputRightElement,
 	Stack,
 	Button,
-	Heading,
 	Text,
 	useColorModeValue,
 	Link,
@@ -42,15 +41,15 @@ const validateInputs = () => {
   
 	// Check for minimum length
 	if (name.length < 3) {
-	  showToast("Invalid Input", "Full name must be at least 3 characters long.", "error");
+	  showToast("Invalid name", "Full name must be at least 3 characters long.", "error");
 	  return false;
 	}
 	if (username.length < 3) {
-	  showToast("Invalid Input", "Username must be at least 3 characters long.", "error");
+	  showToast("Invalid username", "Username must be at least 3 characters long.", "error");
 	  return false;
 	}
 	if (password.length < 3) {
-	  showToast("Invalid Input", "Password must be at least 3 characters long.", "error");
+	  showToast("Password too short", "Password must be at least 3 characters long.", "error");
 	  return false;
 	}
   
@@ -60,7 +59,7 @@ const validateInputs = () => {
   
 	if (!namePattern.test(name)) {
 	  showToast(
-		"Invalid Input",
+		"Fake name",
 		"Full name must start with at least three letters (A-Z or a-z).",
 		"error"
 	  );
@@ -69,7 +68,7 @@ const validateInputs = () => {
   
 	if (!usernamePattern.test(username)) {
 	  showToast(
-		"Invalid Input",
+		"Fake username",
 		"Username must start with at least three letters (A-Z or a-z).",
 		"error"
 	  );
@@ -81,12 +80,12 @@ const validateInputs = () => {
 	const emailStartPattern = /^[A-Za-z]/; // Ensure the email starts with a letter
   
 	if (!emailPattern.test(email)) {
-	  showToast("Invalid Input", "Please enter a valid email address.", "error");
+	  showToast("Invalid email", "Please enter a valid email address.", "error");
 	  return false;
 	}
   
 	if (!emailStartPattern.test(email)) {
-	  showToast("Invalid Input", "Email cannot start with a number.", "error");
+	  showToast("Fake email", "Email cannot start with a number.", "error");
 	  return false;
 	}
   
@@ -114,7 +113,7 @@ const validateInputs = () => {
 		  showToast(data.error, data.error, "error");
 		  return;
 		}
-  
+		localStorage.removeItem("user-threads");
 		localStorage.setItem("user-threads", JSON.stringify(data));
 		setUser(data);
 	  } catch (error) {

@@ -75,11 +75,12 @@ const PostPage = () => {
 	return (
 		<>
 
+		<div >
 
-		<div  className="px-10" >
-			<Flex   px={5}   >
+		<div  className="px-10  max-w-lg mt-5     mb-10 md:mb-2 mx-auto" >
+			<Flex     >
 				<Flex w={"full"} alignItems={"center"} gap={3} >
-					<Avatar src={user.profilePic} size={"md"} name='Mark Zuckerberg' />
+					<Avatar src={user.profilePic} size={"md"} name={user.username} />
 					<Flex>
 						<Text fontSize={"sm"} fontWeight={"bold"}>
 							{user.username}
@@ -101,8 +102,9 @@ const PostPage = () => {
 			<Text my={3}>{currentPost.text}</Text>
 
 			{currentPost.img && (
-				<Box borderRadius={6} overflow={"hidden"} border={"1px solid"} borderColor={"gray.light"}>
-					<Image src={currentPost.img} w={"full"} />
+				<Box borderRadius={6} overflow={"hidden"} border={"1px solid"} borderColor={"gray.light"}
+				    >
+					<Image src={currentPost.img} w="full"    />
 				</Box>
 			)}
 
@@ -115,20 +117,23 @@ const PostPage = () => {
 			<Flex justifyContent={"space-between"}>
 				<Flex gap={2} alignItems={"center"}>
 					<Text fontSize={"2xl"}>👋</Text>
-					<Text color={"gray.light"}>What you think about this post, let us know in comment🥰.</Text>
+					<Text color={"gray.light"}>What you think about this post🥰.</Text>
 				</Flex>
-				<Button>Get</Button>
 			</Flex>
 
 			<Divider my={4} />
-			{currentPost.replies.map((reply) => (
-				<Comment
-					key={reply._id}
-					reply={reply}
-					lastReply={reply._id === currentPost.replies[currentPost.replies.length - 1]._id}
-				/>
-			))}
 
+			<div className="scrollbar-hidden " style={{ maxHeight: "150px", overflowY: "auto" }}>
+    {currentPost.replies.map((reply) => (
+      <Comment
+        key={reply._id}
+        reply={reply}
+        lastReply={reply._id === currentPost.replies[currentPost.replies.length - 1]._id}
+      />
+    ))}
+  </div>
+
+</div>
 
 </div>
 		</>

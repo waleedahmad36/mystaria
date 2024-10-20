@@ -90,9 +90,9 @@ const MobileNav = ({ isOpen, onToggle }) => {
 								size="md"
 								bg={theme}
 								color={'white'}
-								onClick={()=>{
-                  logout();
+								onClick={()=>{ 
                   ontoggle();
+                  logout();
                 }}
 								leftIcon={<FiLogOut />}
 							>

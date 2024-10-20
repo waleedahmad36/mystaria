@@ -156,7 +156,7 @@ const Conversation = ({ conversation, isOnline }) => {
                     mock: conversation.mock,
                 })
             }
-            bg={isSelected ? (colorMode === "light" ? "gray.200" : "gray.dark") : ""}
+            bg={isSelected ? (colorMode === "light" ? "gray.200" : "gray.900") : ""}
             borderRadius={"md"}
         >
             <WrapItem>

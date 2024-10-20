@@ -108,7 +108,7 @@ const MessageContainer = () => {
     return (
         <Flex
             flex='70'
-            bg={useColorModeValue("gray.200", "gray.900")} // Transparent glass-like background
+            bg={useColorModeValue("gray.200", "gray.dark")} // Transparent glass-like background
             borderRadius={"md"}
             p={2}
             flexDirection={"column"}

@@ -294,7 +294,7 @@ const ChatPage = () => {
         <Box position={"absolute"} left={"50%"} w={{ base: "100%", md: "80%", lg: "750px" }}  transform={"translateX(-50%)"}   >
             <Flex  flexDirection={{ base: "column", md: "row" }} maxW={{ sm: "400px", md: "full" }} mx={"auto"}  gap={4}  >
                 <Flex flex={30} gap={2} flexDirection={"column"} maxW={{ sm: "250px", md: "full" }} mx={"auto"}    p={2} borderRadius={'5px'} 
-                bg={useColorModeValue('gray.200','gray.900')} minH={'80vh'} >
+                bg={useColorModeValue('gray.200','gray.dark')} minH={'80vh'} >
                     <Text fontWeight={700} color={useColorModeValue("gray.600", "gray.400")}>Your Conversations</Text>
                     <form onSubmit={handleConversationSearch}>
                         <Flex alignItems={"center"} gap={2}>
