@@ -126,7 +126,7 @@ const Post = ({ post, postedBy, activeTab }) => {
 
   return (
     <>
-      <Flex gap={3} mb={4} py={5}>
+      <Flex gap={3} mb={4} py={5} px={{base:'',md:2}}  mx={'auto'}    >
         <Flex flexDirection={"column"} alignItems={"center"}>
           <Avatar
             size='md'

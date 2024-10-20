@@ -97,7 +97,7 @@ const JarvisForm = () => {
   };
 
   return (
-    <div className="p-6 max-w-full mx-auto  text-white rounded-lg shadow-lg">
+    <div className="p-6 max-w-full mx-auto   rounded-lg shadow-lg">
       <h1 className="text-3xl  mb-4 font-extrabold">Jarvis Settings</h1>
       {loading ? (
         <p>Loading...</p>

@@ -1,4 +1,4 @@
-import { Box, Flex, Spinner, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex,  useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import useShowToast from "../hooks/useShowToast";
 import Post from "../components/Post";
@@ -9,6 +9,7 @@ import Sidebar from "../components/Sidebar";
 import MidSuggestions from "../components/MidSuggestions";
 import StatusBar from "../components/StatusBar";
 import themeAtom from "../atoms/themeAtom";
+import Loader from "../components/Loader";
 
 const HomePage = () => {
   const theme = useRecoilValue(themeAtom);
@@ -75,7 +76,7 @@ const HomePage = () => {
 
 
   return (
-    <Flex>
+    <Flex     >
       {/* Sidebar Section */}
       <Box
         display={{ base: "none", lg: "block" }}
@@ -87,17 +88,14 @@ const HomePage = () => {
       </Box>
 
       {/* Main Content Section (Posts and Suggested Users) */}
-      <Flex gap="10" alignItems={"flex-start"} flex={80}   pr={10} >
-        <Box flex={50}>
+      <Flex  alignItems={"flex-start"} justifyContent={'space-evenly'} flex={{md:80}}   >
+        <Box flex={50}    maxW={{md:'45vw'}}  >
           
 
-          <div   className=" max-w-[85vw]  md:max-w-[45vw] mx-auto  " >
+          <div   className=" max-w-[full]  md:max-w-[45vw] mx-auto  " >
           <StatusBar/>
           </div>
 
-          {/* <CoverImage /> */}
-
-          {/* For You / Following Toggle */}
           <Box
             w="95%"
             mx="auto"
@@ -148,10 +146,10 @@ const HomePage = () => {
 
           {loading && (
             <Flex justify="center">
-              <Spinner size="xl" />
+              <Loader/>
             </Flex>
           )}
-          <Box   px={{md:4}}  >
+          <Box    >
           {posts?.map((post, i) => (
     <Box key={post._id}>
       {/* Render the post */}
@@ -159,7 +157,7 @@ const HomePage = () => {
 
       {/* Insert <MidSuggestions /> after every 7 posts */}
       {((i + 1) % 7 === 0) && (
-        <div className="max-w-[85vw] md:max-w-[45vw]  ">
+        <div className="max-w-[90vw] md:max-w-[45vw]  md:mx-auto ">
           <MidSuggestions />
         </div>
       )}
@@ -172,13 +170,14 @@ const HomePage = () => {
         </Box>
 
         <Box
-          flex={30}
+          flex={20}
           display={{
             base: "none",
-            md: "block",
+            lg: "block",
           }}
           position="sticky"
           top="15vh" // Adjusted sticky position
+          maxW={'22vw'} 
         >
           <SuggestedUsers />
         </Box>

@@ -170,17 +170,17 @@ const UserHeader = ({ user }) => {
           </Box>
           <Box className='icon-container'>
             <Menu>
-              <MenuButton>
-                <CgMoreO size={24} cursor={"pointer"} />
+              <MenuButton  _hover={{color:'gray.500'}}  >
+                <CgMoreO size={24} cursor={"pointer"}    />
               </MenuButton>
               <Portal>
-                <MenuList bg={"gray.dark"}>
-                  <MenuItem bg={"gray.dark"} onClick={copyURL}>
+                <MenuList bg={""}>
+                  <MenuItem bg={""} onClick={copyURL}>
                     Copy link
                   </MenuItem>
                   {
                     currentUser?._id !== user._id && (
-                      <MenuItem  bg={"gray.dark"}   onClick={()=>setComplain(true)} >
+                      <MenuItem  bg={""}   onClick={()=>setComplain(true)} >
                       Report {user?.username}
                       </MenuItem>
                     )

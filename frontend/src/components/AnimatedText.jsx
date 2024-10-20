@@ -1,92 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const messages = [
-  "Welcome to Mystaria",
-  "the largest community"
-];
+import { useRecoilValue } from 'recoil';
+import themeAtom from '../atoms/themeAtom';
+import { Link } from 'react-router-dom';
+
+
 
 const AnimatedText = () => {
-  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-  const [displayedMessage, setDisplayedMessage] = useState(messages[0]);
-  const [animationCount, setAnimationCount] = useState(0);
+  const theme = useRecoilValue(themeAtom);
 
-  useEffect(() => {
-    if (animationCount < 2) {
-      const intervalId = setInterval(() => {
-        setCurrentMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
-        setAnimationCount((prevCount) => prevCount + 1);
-      }, 6000); // 6 seconds for each message (adjust as needed)
-
-      return () => clearInterval(intervalId);
-    }
-  }, [animationCount]);
-
-  useEffect(() => {
-    setDisplayedMessage(messages[currentMessageIndex]);
-  }, [currentMessageIndex]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        damping: 15,
-        stiffness: 200,
-      },
-    },
-  };
-
-  const exitVariants = {
-    hidden: { opacity: 1 },
-    visible: { opacity: 0, transition: { duration: 2 } },
-  };
 
   return (
-    <div className="flex justify-center items-center h-[20vh] w-[25vw] overflow-hidden absolute top-[60vh]">
-      <AnimatePresence>
-        {animationCount < 2 && (
-          <motion.div
-            key={currentMessageIndex}
-            className="text-center text-2xl font-extrabold text-gray-500"
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={exitVariants}
-          >
-            <motion.div
-              className="inline-block"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              {displayedMessage.split("").map((letter, index) => (
-                <motion.span
-                  key={index}
-                  variants={letterVariants}
-                  style={{ color: `hsl(${(index * 10) % 360}, 100%, 50%)` }} // subtle color change effect
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </motion.span>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    <>
+    <div>
+    <div className='flex gap-2 absolute -bottom-40'  >
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEJONB2vmLTxw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1727368631041?e=1735171200&v=beta&t=sAyudqtVrbswGoEPRTIqJp6H0NfOAPoo0_319sHCUq0" alt=""  className='w-10 h-10 rounded-full'   />
+        <p  className='text-balance'  >All rights reserved by <span  style={{color:theme}}  >@Mystaria owners</span></p>
+      </div>
+      </div>
+    </>
   );
 };
 

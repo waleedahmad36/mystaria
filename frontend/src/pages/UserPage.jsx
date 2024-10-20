@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import UserHeader from "../components/UserHeader";
 import { useParams } from "react-router-dom";
 import useShowToast from "../hooks/useShowToast";
-import { Flex, Spinner } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Post from "../components/Post";
 import useGetUserProfile from "../hooks/useGetUserProfile";
 import { useRecoilState } from "recoil";
 import postsAtom from "../atoms/postsAtom";
+import Loader from "../components/Loader";
 
 const UserPage = () => {
 	const { user, loading } = useGetUserProfile();
@@ -39,7 +40,7 @@ const UserPage = () => {
 	if (!user && loading) {
 		return (
 			<Flex justifyContent={"center"}>
-				<Spinner size={"xl"} />
+				<Loader />
 			</Flex>
 		);
 	}
@@ -53,7 +54,7 @@ const UserPage = () => {
 			{!fetchingPosts && posts.length === 0 && <h1>User has no posts.</h1>}
 			{fetchingPosts && (
 				<Flex justifyContent={"center"} my={12}>
-					<Spinner size={"xl"} />
+					<Loader/>
 				</Flex>
 			)}
 
