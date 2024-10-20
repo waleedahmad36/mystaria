@@ -42,7 +42,7 @@ export default function LoginCard() {
 			});
 			const data = await res.json();
 			if (data.error) {
-				console.log(error)
+				showToast(data.error,"Error","error")
 				return;
 			}
 			localStorage.removeItem("user-threads");
