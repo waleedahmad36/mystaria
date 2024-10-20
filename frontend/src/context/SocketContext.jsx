@@ -17,7 +17,7 @@ export const SocketContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (user?._id) {
-            const newSocket = io("http://localhost:5000", {
+            const newSocket = io("https://mystaria.onrender.com/", {
                 query: { userId: user._id },
             });
 

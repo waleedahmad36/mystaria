@@ -202,8 +202,9 @@ const Post = ({ post, postedBy, activeTab }) => {
             </Flex>
           </Flex>
 
-          <Text
+          <Text as='span'
             fontSize={"sm"}
+            maxW={'95%'}
             onClick={(e) => {
               e.preventDefault();
               navigate(`/${user.username}/post/${post._id}`);
