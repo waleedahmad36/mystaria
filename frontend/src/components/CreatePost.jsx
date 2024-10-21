@@ -57,6 +57,10 @@ const CreatePost = () => {
 	};
 
 	const handleCreatePost = async () => {
+		if(!postText && !imgUrl){
+			showToast("Fields are blank","error","error");
+			return;
+		}
 		setLoading(true);
 		try {
 			const res = await fetch("/api/posts/create", {

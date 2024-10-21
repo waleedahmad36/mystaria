@@ -5,17 +5,16 @@ import {
   Center,
   Container,
   Input,
-  Spinner,
   Text,
   Avatar,
   Flex,
   Badge,
   useColorModeValue,
 } from "@chakra-ui/react";
-import NotificationComponent from "../components/Notification";
 import themeAtom from "../atoms/themeAtom";
 import { useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -73,7 +72,7 @@ const SearchPage = () => {
 
         {loading && (
           <Center mt={8}>
-            <Spinner size="xl" />
+            <Loader/>
           </Center>
         )}
 

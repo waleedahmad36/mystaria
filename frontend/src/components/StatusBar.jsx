@@ -32,6 +32,7 @@ import { useRecoilValue } from 'recoil';
 import userAtom from '../atoms/userAtom';
 import { AiOutlineFileImage, AiOutlineVideoCamera } from 'react-icons/ai';
 import themeAtom from '../atoms/themeAtom';
+import useShowToast from '../hooks/useShowToast';
 
 const StatusBar = () => {
   const theme = useRecoilValue(themeAtom);
@@ -50,6 +51,7 @@ const StatusBar = () => {
   const [visibility, setVisibility] = useState('public');
   const toast = useToast();
   const user = useRecoilValue(userAtom);
+  const showToast=useShowToast();
 
   // Fetch statuses from the server
   useEffect(() => {
@@ -106,6 +108,10 @@ const StatusBar = () => {
   // Submit new status
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(!text && !caption && !image && !video){
+      showToast("all fields r empty","error","error");
+      return;
+    }
     setLoading(true)
     const formData = new FormData();
     formData.append('text', text);
@@ -119,17 +125,14 @@ const StatusBar = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      toast({
-        title: 'Status posted successfully!',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
+      showToast("Status Posted","success","success");
 
       setText('');
       setCaption('');
       setImage(null);
       setVideo(null);
+
+      onCreateClose();
 
       // Refetch statuses after posting
       const response = await axios.get('/api/status');

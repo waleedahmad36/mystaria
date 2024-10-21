@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Divider, Flex, Image, Spinner, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Divider, Flex, Image,  Text } from "@chakra-ui/react";
 import Actions from "../components/Actions";
 import { useEffect } from "react";
 import Comment from "../components/Comment";
@@ -10,6 +10,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import { DeleteIcon } from "@chakra-ui/icons";
 import postsAtom from "../atoms/postsAtom";
+import Loader from "../components/Loader";
 
 const PostPage = () => {
 	const { user, loading } = useGetUserProfile();
@@ -64,7 +65,7 @@ const PostPage = () => {
 	if (!user && loading) {
 		return (
 			<Flex justifyContent={"center"}>
-				<Spinner size={"xl"} />
+				<Loader />
 			</Flex>
 		);
 	}

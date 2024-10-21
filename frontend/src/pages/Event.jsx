@@ -5,10 +5,10 @@ import {
   Text,
   Avatar,
   Image,
-  Spinner,
   useColorMode,
 } from '@chakra-ui/react';
 import moment from 'moment'; // Import moment for date formatting
+import Loader from '../components/Loader';
 
 const Event = () => {
   const [events, setEvents] = useState([]);
@@ -34,7 +34,7 @@ const Event = () => {
   if (loading) {
     return (
       <Flex justify="center" align="center" height="100vh">
-        <Spinner size="xl" />
+        <Loader />
       </Flex>
     );
   }

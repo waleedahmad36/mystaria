@@ -14,7 +14,6 @@ import {
   TagCloseButton,
   useDisclosure,
   Avatar,
-  Spinner,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -28,6 +27,7 @@ import { useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
 import themeAtom from "../atoms/themeAtom";
+import Loader from "../components/Loader";
 
 const Solutions = () => {
   const theme = useRecoilValue(themeAtom)
@@ -237,7 +237,7 @@ const Solutions = () => {
                 {solutionImage && !loadingImage && (
                   <Image src={solutionImage} alt="Solution" borderRadius="md" mb={2}  w={'200px'}  />
                 )}
-                {loadingImage && <Spinner />}
+                {loadingImage && <Loader />}
               </Box>
 
               <Textarea
@@ -294,7 +294,7 @@ const Solutions = () => {
         {/* Solutions Grid */}
         <Flex wrap="wrap" justify="center" gap={4}>
           {loading ? (
-            <Spinner />
+            <Loader />
           ) : (
             solutions.map((solution) => (
               <Box

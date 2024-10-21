@@ -1,10 +1,11 @@
-import { Avatar, Box, Text, Flex, Spinner, VStack, Button, useColorMode, AvatarBadge } from '@chakra-ui/react';
+import { Avatar, Box, Text, Flex,  VStack, Button, useColorMode, AvatarBadge } from '@chakra-ui/react';
 import { motion } from 'framer-motion'; // Import motion from framer-motion
 import React, { useEffect, useState } from 'react';
 import { useSocket } from '../context/SocketContext';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import themeAtom from '../atoms/themeAtom';
+import Loader from '../components/Loader';
 
 const MotionText = motion(Text);// Wrap Box component with motion
 
@@ -128,7 +129,7 @@ const AllUsers = () => {
             <Flex wrap="wrap" justify="center">
                 {loading ? (
                     <Flex justify="center" align="center" height="100vh">
-                        <Spinner size="xl" />
+                        <Loader />
                     </Flex>
                 ) : error ? (
                     <Flex justify="center" align="center" height="100vh">

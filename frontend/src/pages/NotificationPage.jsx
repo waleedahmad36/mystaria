@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Text, VStack, Spinner, useColorMode, Image, HStack, Button, Tooltip, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
+import { Box, Text, VStack,  useColorMode, Image, HStack, Button, Tooltip, IconButton, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { useRecoilValue } from 'recoil';
 import userAtom from '../atoms/userAtom';
 import { useSocket } from '../context/SocketContext';
 import { ChevronDownIcon, DeleteIcon } from '@chakra-ui/icons';
 import themeAtom from '../atoms/themeAtom';
+import Loader from '../components/Loader';
 
 const NotificationsPage = () => {
   const user = useRecoilValue(userAtom);
@@ -131,7 +132,7 @@ const NotificationsPage = () => {
   if (loading) {
     return (
       <Box textAlign="center" p={4}>
-        <Spinner size="xl" />
+        <Loader />
       </Box>
     );
   }

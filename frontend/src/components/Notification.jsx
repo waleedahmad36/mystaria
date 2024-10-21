@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSocket } from "../context/SocketContext"; // Assuming you are using context for socket
+import { useSocket } from "../context/SocketContext"; 
 
 const NotificationComponent = () => {
 	const { socket } = useSocket();
@@ -7,15 +7,12 @@ const NotificationComponent = () => {
 
 	useEffect(() => {
 		if (socket) {
-			// Listen for incoming notifications
 			socket.on("notification", (notification) => {
-                console.log(notification);  // Add this to check the incoming notification
+                console.log(notification);  
                 setNotifications((prevNotifications) => [...prevNotifications, notification]);
             });
 		}
 	}, [socket]);
-
-	// Display notifications
 	return (
 		<div>
             <p>Notification Component</p>
