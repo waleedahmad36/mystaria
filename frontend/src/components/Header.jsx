@@ -10,8 +10,6 @@ import {
 	Box,
 	Menu,
 	MenuButton,
-	MenuList,
-	MenuItem,
 	Badge,
 	useColorModeValue,
 } from "@chakra-ui/react";
@@ -24,8 +22,7 @@ import useLogout from "../hooks/useLogout";
 import authScreenAtom from "../atoms/authAtom";
 import { useState, useEffect } from "react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { IoNotifications } from "react-icons/io5";
-import { useSocket } from "../context/SocketContext"; // Import the useSocket hook
+import { useSocket } from "../context/SocketContext"; 
 import themeAtom from "../atoms/themeAtom";
 
 const Header = ({ onToggle }) => {
@@ -36,10 +33,10 @@ const Header = ({ onToggle }) => {
 	const navigate = useNavigate();
 	const { isOpen } = useDisclosure();
 	const [isScrolled, setIsScrolled] = useState(false);
-	const [notifications, setNotifications] = useState([]); // Store notifications
-	const [unreadCount, setUnreadCount] = useState(0); // Unread notifications count
+	const [notifications, setNotifications] = useState([]);
+	const [unreadCount, setUnreadCount] = useState(0); 
 	const [loading, setLoading] = useState(true);
-	const { socket } = useSocket(); // Get socket from useSocket
+	const { socket } = useSocket(); 
 	const theme = useRecoilValue(themeAtom)
 	const setTheme = useSetRecoilState(themeAtom);
 
@@ -52,12 +49,10 @@ const Header = ({ onToggle }) => {
 		}
 	}
 
-	// Scroll effect for the sticky header
 	const handleScroll = () => {
 		setIsScrolled(window.scrollY > 0);
 	};
 
-	// Fetch notifications from the server on mount
 	useEffect(() => {
 		const fetchNotifications = async () => {
 			if (!user) return;
@@ -75,8 +70,8 @@ const Header = ({ onToggle }) => {
 
 				const data = await response.json();
 				setNotifications(data);
-				// console.log('notifications length is',notifications.length)
-				setUnreadCount(data.length); // Count unread notifications
+
+				setUnreadCount(data.length); 
 			} catch (error) {
 				console.error("Error fetching notifications:", error);
 			} finally {
@@ -90,12 +85,11 @@ const Header = ({ onToggle }) => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [user]);
 
-	// Real-time notification updates via socket
 	useEffect(() => {
 		if (socket) {
 			socket.on("notification", (notification) => {
 				setNotifications((prev) => [...prev, notification]);
-				setUnreadCount((prevCount) => prevCount + 1); // Increment unread count
+				setUnreadCount((prevCount) => prevCount + 1); 
 			});
 		}
 
@@ -104,7 +98,6 @@ const Header = ({ onToggle }) => {
 		};
 	}, [socket]);
 
-	// Handle notification click
 	const handleNotificationClick = () => {
 		navigate("/notification");
 	};
@@ -113,7 +106,6 @@ const Header = ({ onToggle }) => {
 		<Flex
 			justifyContent="space-between"
 			alignItems="center"
-			// mb={8}
 			px={4}
 			py={4}
 			boxShadow={isScrolled ? "md" : "none"}
@@ -124,16 +116,16 @@ const Header = ({ onToggle }) => {
 			color={isScrolled ? (colorMode === "dark" ? "white" : "gray.800") : "white"}
 			transition="background-color 0.3s ease, color 0.3s ease"
 		>
-			{/* Left side: Logo or home button */}
+			
 			{user && (
 				<RouterLink to="/">
 					<img src={theme === '#9333EA' ? 'm logo 12.png' : 'm.png'} alt="" className="w-10 h-10" />
 				</RouterLink>
 			)}
 
-			{/* Center: Search bar and icons */}
+			
 			<HStack spacing={6} alignItems="center" flex={1} justifyContent="center">
-				{/* Search bar */}
+			
 				{user && (
 					<Box position="relative">
 						<Input
@@ -149,7 +141,7 @@ const Header = ({ onToggle }) => {
 					</Box>
 				)}
 
-				{/* Notifications */}
+			
 				{user && (
 	<Menu>
 		<MenuButton as={Box} position="relative" cursor={'pointer'}  onClick={handleNotificationClick} >
@@ -164,7 +156,6 @@ const Header = ({ onToggle }) => {
 				/>
 			</Tooltip>
 
-			{/* Display unread count if there are unread notifications */}
 			{unreadCount > 0 && (
 				<Badge
 					colorScheme="red"
@@ -185,7 +176,7 @@ const Header = ({ onToggle }) => {
 
 			</HStack>
 
-			{/* Right side: Logout or Hamburger Menu for small screens */}
+		
 			<HStack spacing={6} alignItems="center">
 				<Tooltip label="Toggle Theme" placement="bottom" hasArrow    background={theme} color={'white'}  >
 					<IconButton
@@ -218,7 +209,7 @@ const Header = ({ onToggle }) => {
 
 
 
-				{/* For small screens, show the Hamburger Menu */}
+				
 				{user && (
 					<IconButton
 						icon={<HamburgerIcon   color={theme} />}
@@ -230,7 +221,7 @@ const Header = ({ onToggle }) => {
 					/>
 				)}
 
-				{/* Show Logout button only on larger screens with Tooltip */}
+		
 				{user && (
 					<Box  as="span"   display={{ base: "none", md: "inline-flex" }}  >
 					<Tooltip label="Logout" placement="bottom" hasArrow  background={theme} color={'white'}       >

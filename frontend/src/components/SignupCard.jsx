@@ -33,9 +33,7 @@ import {
 	const showToast = useShowToast();
 	const setUser = useSetRecoilState(userAtom);
   
-	// Function to validate inputs
-	// Function to validate inputs
-// Function to validate inputs
+
 const validateInputs = () => {
 	const { name, username, email, password } = inputs;
   
@@ -53,7 +51,6 @@ const validateInputs = () => {
 	  return false;
 	}
   
-	// Validate the first three characters are letters for both name and username
 	const namePattern = /^[A-Za-z]{3}/;
 	const usernamePattern = /^[A-Za-z]{3}/;
   
@@ -75,9 +72,9 @@ const validateInputs = () => {
 	  return false;
 	}
   
-	// Validate email format and ensure it does not start with a number
+
 	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	const emailStartPattern = /^[A-Za-z]/; // Ensure the email starts with a letter
+	const emailStartPattern = /^[A-Za-z]/; 
   
 	if (!emailPattern.test(email)) {
 	  showToast("Invalid email", "Please enter a valid email address.", "error");
@@ -96,7 +93,7 @@ const validateInputs = () => {
   
 	const handleSignup = async () => {
 	  if (!validateInputs()) {
-		return; // If validation fails, do not proceed with signup
+		return; 
 	  }
   
 	  try {

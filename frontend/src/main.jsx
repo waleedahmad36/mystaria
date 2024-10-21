@@ -14,10 +14,9 @@ const styles = {
 	global: (props) => ({
 		body: {
 			color: mode("gray.800", "whiteAlpha.900")(props),
-			bg: mode("gray.100", "#000")(props), // Dark blue with transparency
-			backdropFilter: mode("none", "blur(10px)")(props), // Apply blur in dark mode
-			WebkitBackdropFilter: mode("none", "blur(10px)")(props), // Support for Webkit browsers
-			// backgroundAttachment: "fixed",
+			bg: mode("gray.100", "#000")(props), 
+			backdropFilter: mode("none", "blur(10px)")(props), 
+			WebkitBackdropFilter: mode("none", "blur(10px)")(props), 
 		},
 	}),
 };

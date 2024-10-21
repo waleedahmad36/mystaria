@@ -4,10 +4,9 @@ import { deleteAllNotifications, deleteNotification, getNotifications, markNotif
 
 const router = express.Router();
 
-// Route to get notifications for the logged-in user
 router.get('/',  getNotifications);
-router.post("/read", markNotificationAsRead); // Mark a notification as read
-router.delete("/:notificationId", deleteNotification); // Delete a single notification
+router.post("/read", markNotificationAsRead); 
+router.delete("/:notificationId", deleteNotification); 
 router.delete("/", deleteAllNotifications);
 
 

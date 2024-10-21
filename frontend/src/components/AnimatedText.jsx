@@ -1,7 +1,6 @@
 
 import { useRecoilValue } from 'recoil';
 import themeAtom from '../atoms/themeAtom';
-import { Link } from 'react-router-dom';
 
 
 

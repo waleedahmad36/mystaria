@@ -1,4 +1,4 @@
-import { toast } from "react-hot-toast"; // Import from react-hot-toast
+import { toast } from "react-hot-toast"; 
 import { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import themeAtom from "../atoms/themeAtom";
@@ -11,7 +11,7 @@ const useShowToast = () => {
 				duration: 3000,
 				description,
 				style: {
-					color: status === "success" ? "green" : "red", // Adjust colors based on status
+					color: status === "success" ? "green" : "red", 
 				},
 			});
 		},

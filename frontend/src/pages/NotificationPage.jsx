@@ -3,7 +3,7 @@ import { Box, Text, VStack,  useColorMode, Image, HStack, Button, Tooltip, IconB
 import { useRecoilValue } from 'recoil';
 import userAtom from '../atoms/userAtom';
 import { useSocket } from '../context/SocketContext';
-import { ChevronDownIcon, DeleteIcon } from '@chakra-ui/icons';
+import {  DeleteIcon } from '@chakra-ui/icons';
 import themeAtom from '../atoms/themeAtom';
 import Loader from '../components/Loader';
 
@@ -48,7 +48,6 @@ const NotificationsPage = () => {
   useEffect(() => {
     if (socket) {
       socket.on('notification', (notification) => {
-        // Update notifications state with the new notification
         setNotifications((prev) => [...prev, notification]);
       });
     }
@@ -60,16 +59,15 @@ const NotificationsPage = () => {
     };
   }, [socket]);
 
-  // Handle notification click for redirection
+
   const handleNotificationClick = (notification) => {
     if (notification.type === 'follow') {
-      window.location.href = `/${notification.sender.username}`; // Redirect to user's profile
+      window.location.href = `/${notification.sender.username}`; 
     } else if (notification.type === 'like' || notification.type === 'reply') {
-      window.location.href = `/${notification.receiver}/post/${notification.post}`; // Redirect to the specific post
+      window.location.href = `/${notification.receiver}/post/${notification.post}`; 
     }
   };
 
-  // Mark a notification as read
   const markNotificationAsRead = async (notificationId) => {
     try {
       await fetch('/api/notifications/read', {
@@ -81,7 +79,7 @@ const NotificationsPage = () => {
         body: JSON.stringify({ notificationId }),
       });
 
-      // Update the notification list, marking the notification as read
+
       setNotifications((prev) =>
         prev.map((notification) =>
           notification._id === notificationId ? { ...notification, read: true } : notification
@@ -92,7 +90,7 @@ const NotificationsPage = () => {
     }
   };
 
-  // Delete a single notification
+ 
   const deleteNotification = async (notificationId) => {
     try {
       await fetch(`/api/notifications/${notificationId}`, {
@@ -102,14 +100,13 @@ const NotificationsPage = () => {
         },
       });
 
-      // Update the notification list by removing the deleted notification
       setNotifications((prev) => prev.filter((notification) => notification._id !== notificationId));
     } catch (error) {
       console.error('Error deleting notification:', error);
     }
   };
 
-  // Delete all notifications
+  
   const deleteAllNotifications = async () => {
     try {
       await fetch(`/api/notifications`, {
@@ -118,10 +115,9 @@ const NotificationsPage = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`,
         },
-        body: JSON.stringify({ userId: user._id }), // Send userId in the request body
+        body: JSON.stringify({ userId: user._id }),
       });
   
-      // Clear all notifications from the state
       setNotifications([]);
     } catch (error) {
       console.error('Error deleting all notifications:', error);
@@ -139,7 +135,7 @@ const NotificationsPage = () => {
 
   return (
     <VStack spacing={4} p={4}>
-    {/* Delete All Notifications Icon Button with Tooltip */}
+
 
     {notifications.length === 0 ? (
       <Text>No notifications</Text>
@@ -148,8 +144,8 @@ const NotificationsPage = () => {
         <Box
           key={notification._id}
           p={4}
-          width="100%" // Increase width for better readability
-          maxW="full" // Limit width to a max for layout consistency
+          width="100%"
+          maxW="full"
           borderRadius="md"
           boxShadow="md"
           bg={colorMode === 'dark' ? 'gray.dark' : 'white'}
@@ -160,7 +156,7 @@ const NotificationsPage = () => {
         >
           <HStack spacing={3} justifyContent="space-between">
             <HStack spacing={3}>
-              {/* Display sender's profile picture */}
+
               {notification?.sender?.profilePic && (
                 <Image
                   src={notification?.sender?.profilePic}
@@ -178,7 +174,6 @@ const NotificationsPage = () => {
               </VStack>
             </HStack>
 
-            {/* Dropdown for notification actions (mark as read/delete) */}
             <Menu>
               <MenuButton as={Button} rightIcon={<p>...</p>} size="sm" variant="" color={theme}
               onClick={(e) => e.stopPropagation()}

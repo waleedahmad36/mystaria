@@ -25,7 +25,7 @@ const MessageContainer = () => {
                 setMessages((prev) => [...prev, message]);
             }
 
-            // make a sound if the window is not focused
+       
             if (!document.hasFocus()) {
                 const sound = new Audio(messageSound);
                 sound.play();
@@ -108,12 +108,12 @@ const MessageContainer = () => {
     return (
         <Flex
             flex='70'
-            bg={useColorModeValue("gray.200", "gray.dark")} // Transparent glass-like background
+            bg={useColorModeValue("gray.200", "gray.dark")} 
             borderRadius={"md"}
             p={2}
             flexDirection={"column"}
         >
-            {/* Message header */}
+            
             <Flex w={"full"} h={12} alignItems={"center"} gap={2}>
                 <Avatar src={selectedConversation.userProfilePic} size={"sm"} />
                 <Text display={"flex"} alignItems={"center"}>

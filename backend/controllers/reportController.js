@@ -17,14 +17,14 @@ export const createReport = async (req, res) => {
 export const getReports = async (req, res) => {
     try {
       const reports = await Report.find({isFulfilled:false})
-        .populate('author', 'name email') // Populate author details from User model
+        .populate('author', 'name email') 
         .populate({
           path: 'post',
           populate: {
             path: 'postedBy',
             select: 'username profilePic'
           }
-        }); // Populate post details from Post model and nested postedBy field from User model
+        }); 
       res.status(200).json(reports);
     } catch (error) {
       res.status(500).json({ message: error.message });

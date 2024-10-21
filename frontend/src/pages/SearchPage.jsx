@@ -64,6 +64,7 @@ const SearchPage = () => {
             onClick={handleSearch}
             disabled={loading}
             bg={theme}
+            color={'white'}
             size="lg"
           >
             Search

@@ -10,19 +10,16 @@ const createSolution = async (req, res) => {
       return res.status(400).json({ error: "Title and description are required" });
     }
 
-    // Automatically get the author from the logged-in user
     const author = req.user._id;
 
-    // Create a new solution
     const newSolution = new Solution({
       title,
       description,
       tags,
       author,
-      imageUrl, // Add imageUrl to the new solution
+      imageUrl, 
     });
 
-    // Save the new solution to the database
     const savedSolution = await newSolution.save();
 
     res.status(201).json(savedSolution);
@@ -35,8 +32,6 @@ const createSolution = async (req, res) => {
 
 
 
-
-// Delete a solution by ID
 const deleteSolution = async (req, res) => {
   try {
     const solution = await Solution.findById(req.params.id);
@@ -45,7 +40,6 @@ const deleteSolution = async (req, res) => {
       return res.status(404).json({ message: "Solution not found" });
     }
 
-    // Check if the logged-in user is the author of the solution
     if (solution.author.toString() !== req.user._id.toString()) {
       return res.status(401).json({ message: "Unauthorized to delete solution" });
     }
@@ -63,13 +57,12 @@ const deleteSolution = async (req, res) => {
 
 const searchSolutions = async (req, res) => {
     try {
-      const { query } = req.body; // Retrieve query from the request body
+      const { query } = req.body; 
   
       if (!query || typeof query !== 'string') {
         return res.status(400).json({ message: "Query parameter is required and should be a string" });
       }
   
-      // Find solutions that match the search query in title or description
       const solutions = await Solution.find({
         $or: [
           { title: { $regex: query, $options: "i" } },
@@ -86,13 +79,11 @@ const searchSolutions = async (req, res) => {
 
 
 
-// Controller for getting all existing solutions
 const getAllSolutions = async (req, res) => {
     try {
-      // Find all solutions in the database and populate the author field
+
       const solutions = await Solution.find().populate("author", "username profilePic");
   
-      // Return the list of solutions
       res.json(solutions);
     } catch (error) {
       // Handle errors
@@ -100,7 +91,7 @@ const getAllSolutions = async (req, res) => {
     }
   };
 
-// Export the controller function
+
 
 
 //admin controllers

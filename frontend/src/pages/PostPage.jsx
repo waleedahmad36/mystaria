@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Divider, Flex, Image,  Text } from "@chakra-ui/react";
+import { Avatar, Box,  Divider, Flex, Image,  Text } from "@chakra-ui/react";
 import Actions from "../components/Actions";
 import { useEffect } from "react";
 import Comment from "../components/Comment";
@@ -29,14 +29,12 @@ const PostPage = () => {
 				const res = await fetch(`/api/posts/${pid}`);
 				const data = await res.json();
 				if (data.error) {
-					// console.log(error)
 					console.log(error)
 					return;
 				}
 				console.log('data is',data)
 				setPosts([data]);
 			} catch (error) {
-				// console.log(error);
 				console.log(error)
 			}
 		};

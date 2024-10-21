@@ -62,8 +62,8 @@ export default function LoginCard() {
 			bg={useColorModeValue("white", "rgba(0, 0, 40, 0.2)")}
 			boxShadow={"lg"}
 			py={8}
-			px={3} // Adjust this for better spacing
-			w={"full"} // Use full width
+			px={3}
+			w={"full"} 
 		>
 			<Text  fontSize={{base:'2xl',md:'4xl'}}  mb={{base:2,md:0}}   >Login to your account</Text>
 			<Stack spacing={4}>

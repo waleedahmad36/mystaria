@@ -134,7 +134,7 @@ const StatusBar = () => {
 
       onCreateClose();
 
-      // Refetch statuses after posting
+     
       const response = await axios.get('/api/status');
       setStatuses(response.data);
     } catch (error) {
@@ -164,14 +164,14 @@ const StatusBar = () => {
           }}
           
         >
-          {/* Plus icon to add a new status */}
+          
           <div className="flex-shrink-0">
             <button className="relative" onClick={onCreateOpen}>
               <FaPlusCircle size={40}   color={theme}   />
             </button>
           </div>
 
-          {/* Render each status */}
+         
           {statuses?.map((status) => (
             <div key={status._id} className="flex-shrink-0 relative cursor-pointer">
               <div
@@ -192,7 +192,7 @@ const StatusBar = () => {
                   : status.userId.username}
               </span>
 
-              {/* Eye icon and viewer count */}
+            
               <div className="flex items-center justify-center mt-1">
                 {user._id === status.userId._id && (
                   <>
@@ -211,7 +211,7 @@ const StatusBar = () => {
           ))}
         </div>
 
-        {/* Scroll buttons */}
+      
         <ChevronLeft
           className="absolute top-1/2 left-2 w-8 h-8 bg-black/60 text-white rounded-full cursor-pointer hidden md:group-hover:block "
           onClick={scrollLeft}
@@ -221,7 +221,6 @@ const StatusBar = () => {
           onClick={scrollRight}
         />
 
-        {/* Modal for viewing status */}
         {selectedStatus && (
           <Modal isOpen={isViewOpen} onClose={onViewClose}    >
             <ModalOverlay />
@@ -247,7 +246,6 @@ const StatusBar = () => {
           </Modal>
         )}
 
-        {/* Modal to add new status */}
         <Modal isOpen={isCreateOpen} onClose={onCreateClose}>
       <ModalOverlay />
       <ModalContent   bg={useColorModeValue('gray.100','gray.dark')}  >
@@ -337,7 +335,7 @@ const StatusBar = () => {
       </ModalContent>
     </Modal>
 
-        {/* Modal to view status viewers */}
+      
         <Modal isOpen={isViewerModalOpen} onClose={onViewerModalClose}>
           <ModalOverlay />
           <ModalContent   bg={useColorModeValue('gray.100','gray.dark')} >

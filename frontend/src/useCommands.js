@@ -73,7 +73,7 @@ const useCommands = () => {
         return 'Opening your LinkedIn profile';
     },
     "open profile": () => {
-        window.open(`http://localhost:3000/${user.username}`, '_blank');
+        window.open(`https://mystaria.onrender.com/${user.username}`, '_blank');
         return 'Opening your Mystaria profile';
     },
     "what you know about me":()=>{
@@ -113,7 +113,7 @@ const useCommands = () => {
     return acc;
   }, {});
 
-  // Combine static and dynamic commands
+  
   const commands = { ...staticCommands, ...dynamicCommands };
 
   return commands;

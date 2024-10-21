@@ -1,5 +1,5 @@
-import { Avatar, Box, Text, Flex,  VStack, Button, useColorMode, AvatarBadge } from '@chakra-ui/react';
-import { motion } from 'framer-motion'; // Import motion from framer-motion
+import { Avatar, Box, Text, Flex,  VStack, Button, useColorMode } from '@chakra-ui/react';
+import { motion } from 'framer-motion'; 
 import React, { useEffect, useState } from 'react';
 import { useSocket } from '../context/SocketContext';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil';
 import themeAtom from '../atoms/themeAtom';
 import Loader from '../components/Loader';
 
-const MotionText = motion(Text);// Wrap Box component with motion
+const MotionText = motion(Text);
 
 const AllUsers = () => {
     const theme = useRecoilValue(themeAtom);
@@ -22,7 +22,7 @@ const AllUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await fetch('/api/users/allusers'); // Adjust the endpoint as per your API
+                const response = await fetch('/api/users/allusers'); 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -52,76 +52,76 @@ const AllUsers = () => {
             fontWeight="bold" 
             color={colorMode === 'light' ? "gray.800" : "white"} 
             marginBottom={8}
-            initial={{ opacity: 0, y: -20 }} // Initial animation state
-            animate={{ opacity: 1, y: 0 }} // Animation state when component mounts
-            transition={{ delay: 0.5, duration: 1.5 }} // Animation duration with a 2-second delay
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.5, duration: 1.5 }} 
         >
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
                 >
                     C
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.1, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.1, duration: 0.5 }} 
                 >
                     o
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.2, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.2, duration: 0.5 }} 
                 >
                     m
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.3, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.3, duration: 0.5 }} 
                 >
                     m
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.4, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4, duration: 0.5 }} 
                 >
                     u
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.5, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.5, duration: 0.5 }} 
                 >
                     n
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.6, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }}
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.6, duration: 0.5 }} 
                 >
                     i
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.7, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.7, duration: 0.5 }} 
                 >
                     t
                 </motion.span>
                 <motion.span
-                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }} // Color change on hover
-                    initial={{ opacity: 0, x: -20 }} // Initial animation state
-                    animate={{ opacity: 1, x: 0 }} // Animation state when component mounts
-                    transition={{ delay: 0.8, duration: 0.5 }} // Animation duration
+                    whileHover={{ color: colorMode === 'light' ? "teal.500" : "teal.200" }}
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ delay: 0.8, duration: 0.5 }} 
                 >
                     y
                 </motion.span>

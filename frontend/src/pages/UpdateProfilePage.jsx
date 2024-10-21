@@ -30,7 +30,7 @@ export default function UpdateProfilePage() {
 	const [updating, setUpdating] = useState(false);
 
 	const showToast = useShowToast();
-	const { colorMode } = useColorMode(); // Add this line to access colorMode
+	const { colorMode } = useColorMode(); 
 
 	const { handleImageChange, imgUrl } = usePreviewImg();
 
@@ -46,7 +46,7 @@ export default function UpdateProfilePage() {
 				},
 				body: JSON.stringify({ ...inputs, profilePic: imgUrl }),
 			});
-			const data = await res.json(); // updated user object
+			const data = await res.json(); 
 			if (data.error) {
 				console.log(error)
 				return;

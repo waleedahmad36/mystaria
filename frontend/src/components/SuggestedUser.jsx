@@ -26,21 +26,20 @@ const SuggestedUser = ({ user }) => {
                     </Text>
                 </Box>
             </Flex>
-            {/* right side */}
+           
             <Button
                 size={"sm"}
                 color={theme}
-                // bg={buttonBg}
+           
                 bg={'none'}
                 _hover={{
                     color: buttonHoverBg,
                 }}
                 onClick={handleFollowUnfollow}
                 isLoading={updating}
-                // borderRadius={"full"} // Rounded corners
-                px={6} // Horizontal padding
-                py={2} // Vertical padding
-                boxShadow="md" // Add a shadow for depth
+                px={6} 
+                py={2}
+                boxShadow="md" 
             >
                 {following ? "Following" : "Follow"}
             </Button>

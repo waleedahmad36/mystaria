@@ -1,6 +1,6 @@
-import { Box, VStack, Icon, Text, useColorMode, useColorModeValue, Button } from "@chakra-ui/react";
+import { Box, VStack, Icon, Text,  useColorModeValue,  } from "@chakra-ui/react";
 import { AiFillHome } from "react-icons/ai";
-import { MdOutlineSettings, MdPersonSearch, MdOutlineDashboardCustomize, MdEvent } from "react-icons/md";
+import { MdOutlineSettings, MdPersonSearch, MdEvent } from "react-icons/md";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
 import { Link as RouterLink } from "react-router-dom";
 import CoverImage from "./CoverImage";
@@ -14,42 +14,40 @@ const Sidebar = () => {
 	const user = useRecoilValue(userAtom);
 	const theme = useRecoilValue(themeAtom);
 
-	// Use Chakra UI's color mode hook
-	const { colorMode } = useColorMode();
-	const bgColor = useColorModeValue("gray.100", "#000"); // Light or dark background
-	const textColor = useColorModeValue("gray.800", "white"); // Adjust text color
-	const hoverBgColor = useColorModeValue("gray.300", "gray.700"); // Hover effect color
+	
+	const bgColor = useColorModeValue("gray.100", "#000"); 
+	const textColor = useColorModeValue("gray.800", "white"); 
+	const hoverBgColor = useColorModeValue("gray.300", "gray.700"); 
 
 	return (
 		<>
 		<Box
 			w={{ base: "full", md: "250px" }}
 			h="100vh"
-			bg={bgColor} // Background color depending on the theme
-			color={textColor} // Text color based on theme
+			bg={bgColor} 
+			color={textColor} 
 			pb={8}
 			px={4}
 			position="sticky"
 			top="15vh"
 			transition="all 0.3s ease"
-			boxShadow="lg" // Constant box shadow for the sidebar
+			boxShadow="lg" 
 		>
 
 <CoverImage/>
 			
-			<VStack spacing={1} align="stretch"   mt={5}  > {/* Use align="stretch" for full-width items */}
-				{/* Sidebar Items */}
-
+			<VStack spacing={1} align="stretch"   mt={5}  > 
+				
 
 				<RouterLink to="/">
 					<Box 
 						display="flex" 
 						alignItems="center" 
-						justifyContent="flex-start" // Aligns items to start
-						h="50px" // Set a fixed height for uniformity
-						px={4} // Horizontal padding
-						_hover={{ bg: hoverBgColor, borderRadius: "md" }} // Hover effect
-						transition="background-color 0.3s ease" // Smooth hover transition
+						justifyContent="flex-start" 
+						h="50px" 
+						px={4} 
+						_hover={{ bg: hoverBgColor, borderRadius: "md" }} 
+						transition="background-color 0.3s ease" 
 					>
 						<Icon as={AiFillHome} boxSize={5}  color={theme} />
 						<Text ml={4} fontWeight="bold">Home</Text>

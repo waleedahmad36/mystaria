@@ -21,7 +21,7 @@ router.post("/logout", logoutUser);
 router.get("/allusers",protectRoute,getAllUsers)
 router.post("/search", protectRoute, searchUsersByName);
 
-router.post("/follow/:id", protectRoute, followUnFollowUser); // Toggle state(follow/unfollow)
+router.post("/follow/:id", protectRoute, followUnFollowUser); 
 router.put("/update/:id", protectRoute, updateUser);
 router.put("/freeze", protectRoute, freezeAccount);
 router.put('/block',protectRoute,blockAccount)

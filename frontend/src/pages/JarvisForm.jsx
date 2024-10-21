@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { MdDeleteSweep } from "react-icons/md";
 import { IoAddOutline } from "react-icons/io5";
 
-// API URLs (update with your actual URLs)
+
 const API_BASE_URL = '/api/jarvis'; 
 
 const JarvisForm = () => {

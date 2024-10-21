@@ -22,7 +22,6 @@ import {
   ModalBody,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaPlus } from "react-icons/fa";
 import { useRecoilValue } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
@@ -188,7 +187,6 @@ const Solutions = () => {
   return (
     <Box className="relative min-h-[80vh] rounded-md container mx-auto px-4 sm:px-6 lg:px-8">
       <Flex direction="column" className="relative z-10 space-y-6">
-        {/* Solution Creation Form */}
         <Box bg="gray.900" p={4} rounded="md">
           <Flex justify="space-between" align="center" gap={4}>
             <Avatar src={user.profilePic} size="md" />
@@ -277,7 +275,6 @@ const Solutions = () => {
           </Collapse>
         </Box>
 
-        {/* Search Bar */}
         <Flex justify="center">
           <Input
             type="text"
@@ -291,7 +288,6 @@ const Solutions = () => {
           />
         </Flex>
 
-        {/* Solutions Grid */}
         <Flex wrap="wrap" justify="center" gap={4}>
           {loading ? (
             <Loader />
@@ -319,7 +315,7 @@ const Solutions = () => {
 
                 <Image src={solution.imageUrl} alt={solution.title} borderRadius="md" mb={4} />
                 <Text color="white" fontWeight="bold" fontSize="lg">{solution.title}</Text>
-                <Text color="gray.300" mt={2} noOfLines={3}>{solution.description}</Text> {/* Limit to 3 lines */}
+                <Text color="gray.300" mt={2} noOfLines={3}>{solution.description}</Text> 
 
                 <Flex justify="space-between" mt={4}>
                   {user._id === solution.author._id && (
@@ -334,7 +330,6 @@ const Solutions = () => {
         </Flex>
       </Flex>
 
-      {/* Modal for Full Solution */}
       {selectedSolution && (
         <Modal isOpen={!!selectedSolution} onClose={() => setSelectedSolution(null)}>
           <ModalOverlay />
@@ -352,7 +347,6 @@ const Solutions = () => {
                   </Box>
                 </Flex>
               <Text >{selectedSolution.description}</Text>
-              {/* Display other details as needed */}
             </ModalBody>
           </ModalContent>
         </Modal>

@@ -1,4 +1,4 @@
-// jokes.js
+
 async function getRandomJoke() {
     try {
         // Fetching a random joke from the joke API
@@ -12,5 +12,5 @@ async function getRandomJoke() {
     }
 }
 
-// Export the function to be used in other files
+
 export { getRandomJoke };

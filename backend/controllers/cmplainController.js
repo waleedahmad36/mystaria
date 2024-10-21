@@ -16,7 +16,6 @@ export const createComplain = async (req, res) => {
 export const getComplains = async (req, res) => {
   try {
     const complains = await Complain.find({ isFulfilled: false }).populate('author', 'name email profilePic');
-    console.log("Fetched complains:", complains); // Log fetched complaints
     res.status(200).json(complains);
   } catch (error) {
     console.error("Error fetching complains:", error); // Log error

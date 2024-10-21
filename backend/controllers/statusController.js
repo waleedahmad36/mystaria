@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import Status from '../models/statusModel.js'; // Your Status model
+import Status from '../models/statusModel.js'; 
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
 
@@ -143,17 +143,14 @@ export const createStatus = async (req, res) => {
 };
 
 
-  
-
-// Get statuses (handle public or follower-only statuses)
 export const getStatuses = async (req, res) => {
     try {
-      const userId = req.user._id; // Assuming user is authenticated
+      const userId = req.user._id; 
   
       const statuses = await Status.find({
         $or: [
           { visibility: 'public' },
-          { visibility: 'followers', userId: { $in: req.user.following } }, // Status for followers only
+          { visibility: 'followers', userId: { $in: req.user.following } }, 
         ],
       })
         .sort({ createdAt: -1 }) // Sort to get the latest statuses first

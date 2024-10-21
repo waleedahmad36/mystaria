@@ -12,7 +12,7 @@ export const useSocket = () => {
 export const SocketContextProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
-    const [notifications, setNotifications] = useState([]); // State to store notifications
+    const [notifications, setNotifications] = useState([]); 
     const user = useRecoilValue(userAtom);
 
     useEffect(() => {
@@ -28,9 +28,10 @@ export const SocketContextProvider = ({ children }) => {
             });
 
             newSocket.on("notification", (notification) => {
-                // Update notifications state
+                
                 setNotifications(prev => [...prev, notification]);
-                // Optionally, you could show a toast or alert here
+
+
                 console.log("New notification:", notification);
             });
 

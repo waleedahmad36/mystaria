@@ -75,18 +75,11 @@ const Actions = ({ post }) => {
 	};
 
 
-	// const handleMouseEnter = (e) => {
-	// 	const rect = e.target.getBoundingClientRect();
-	// 	setModalPosition({
-	// 		top: rect.bottom + window.scrollY,
-	// 		left: rect.left + window.scrollX,
-	// 	});
-	// 	setLikesModalVisible(true);
-	// };
+	
 	const handleMouseEnter = (e) => {
         const rect = e.target.getBoundingClientRect();
         setModalPosition({
-            top: rect.top + window.scrollY - 100, // Show above the likes count
+            top: rect.top + window.scrollY - 100, 
             left: rect.left + window.scrollX,
         });
         setLikesModalVisible(true);
@@ -96,7 +89,6 @@ const Actions = ({ post }) => {
 		setLikesModalVisible(false);
 	};
 
-	// Handle reply submission
 	const handleReply = async () => {
 		if (!user) return showToast("Error", "You must be logged in to reply to a post", "error");
 		if (isReplying) return;
@@ -112,7 +104,6 @@ const Actions = ({ post }) => {
 			const data = await res.json();
 			if (data.error) return console.log(error)
 
-			// Add the new reply to the post's replies
 			const updatedPosts = posts.map((p) => {
 				if (p._id === post._id) {
 					return { ...p, replies: [...p.replies, data] };
@@ -130,14 +121,14 @@ const Actions = ({ post }) => {
 	};
 
 	return (
-		<Flex flexDirection='column' w='100%'> {/* Full width */}
+		<Flex flexDirection='column' w='100%'> 
 			<Flex gap={3} my={2} w="100%" onClick={(e) =>{
 				e.preventDefault();
 				e.stopPropagation();
 
 			}
 
-			}> {/* Adjust width here */}
+			}> 
 				<svg
 					aria-label='Like'
 					color={liked ? theme : theme}
@@ -178,7 +169,7 @@ const Actions = ({ post }) => {
 				</svg>
 			</Flex>
 
-			<Flex gap={2} alignItems={"center"} w="100%"> {/* Ensure width */}
+			<Flex gap={2} alignItems={"center"} w="100%"> 
 				<Text color={"gray.light"} fontSize='sm'>
 					{post.replies.length} replies
 				</Text>
@@ -226,14 +217,13 @@ const Actions = ({ post }) => {
 
 			
 
-			{/* Expandable comment section */}
 			<Collapse in={isOpen} animateOpacity w="100%"   
 			onClick={(e)=>e.stopPropagation()}
-			> {/* Expand to full width */}
+			>
 				<Box mt={4} bg={useColorModeValue("gray.200", "gray.900")} p={4} borderRadius='md' w={'100%'}  
 				onClick={(e)=>e.stopPropagation()}
 				>
-					{/* Comment input */}
+				
 					<FormControl>
 						<Input
 							placeholder='Write a comment...'
@@ -248,7 +238,7 @@ const Actions = ({ post }) => {
 							size='sm'
 							isLoading={isReplying}
 							onClick={handleReply}
-							bg={useColorModeValue("gray.100", theme)} // Adjusted button style
+							bg={useColorModeValue("gray.100", theme)} 
 							color={useColorModeValue(theme, 'white')}
 						>
 							Reply

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState,  } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRecoilValue } from 'recoil';
 import userAtom from '../atoms/userAtom';

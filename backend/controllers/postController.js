@@ -325,11 +325,10 @@ const getUserPosts = async (req, res) => {
 
 const getTrendingPosts = async (req, res) => {
     try {
-        // Find all posts, sort by the number of likes in descending order, and limit the results to the top 10
         const trendingPosts = await Post.find()
             .sort({ likes: -1 })
             .limit(6)
-            .populate('postedBy', 'username profilePic'); // Populate username and profilePic from the postedBy field
+            .populate('postedBy', 'username profilePic'); 
 
         res.status(200).json(trendingPosts);
     } catch (err) {
@@ -349,11 +348,11 @@ const getAllPosts = async (req, res) => {
 		.populate('postedBy', 'username profilePic')
 		.populate({
 			path: 'replies.userId', 
-			select: 'username profilePic', // Populate reply author details
+			select: 'username profilePic', 
 		  })
 		  .populate({
 			path: 'likes',
-			select: 'username profilePic', // Populate like author details
+			select: 'username profilePic', 
 		});
         res.status(200).json(allPosts);
     } catch (err) {
@@ -370,7 +369,6 @@ const toggleApproval = async (req, res) => {
 		return res.status(404).json({ error: "Post not found" });
 	  }
   
-	  // Toggle the isApproved field
 	  post.isApproved = !post.isApproved;
 	  await post.save();
   

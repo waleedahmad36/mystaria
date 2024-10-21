@@ -26,7 +26,6 @@ const UserPage = () => {
 				console.log(data);
 				setPosts(data);
 			} catch (error) {
-				// console.log(error);
 				console.log(error);
 				setPosts([]);
 			} finally {

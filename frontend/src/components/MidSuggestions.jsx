@@ -63,8 +63,8 @@ const MidSuggestions = () => {
       overflow="hidden"
       maxW={{ base: '100%', md: '700px' }}
       mx="auto"
-      onMouseEnter={() => setShowArrows(true)} // Show arrows on hover
-      onMouseLeave={() => setShowArrows(false)} // Hide arrows when not hovering
+      onMouseEnter={() => setShowArrows(true)} 
+      onMouseLeave={() => setShowArrows(false)} 
     >
       <Flex
         overflowX="auto"

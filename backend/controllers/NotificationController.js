@@ -85,18 +85,15 @@ export const deleteNotification = async (req, res) => {
 
 export const deleteAllNotifications = async (req, res) => {
 	try {
-		// Get user ID from the request body or query parameters
+
 		const userId = req.body.userId || req.query.userId;
 
-		// Ensure user ID is provided
 		if (!userId) {
 			return res.status(400).json({ error: "User ID is required" });
 		}
 
-		// Delete all notifications for the user
 		const deletedNotifications = await Notification.deleteMany({ receiver: userId });
 
-		// Return a success message with the count of deleted notifications
 		res.status(200).json({ message: `${deletedNotifications.deletedCount} notifications deleted successfully` });
 	} catch (err) {
 		res.status(500).json({ error: err.message });

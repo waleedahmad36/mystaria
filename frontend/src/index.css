@@ -9,7 +9,7 @@ body {
   }
   
 
-/* src/styles/UserCard.css */
+
 .user-card {
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.1);
@@ -73,26 +73,22 @@ body {
 }
 
 
-/* Hide scrollbar but allow scrolling */
 .scrollbar-hidden {
-	overflow-y: auto; /* Enable vertical scrolling */
-	scrollbar-width: none; /* For Firefox */
+	overflow-y: auto; 
+	scrollbar-width: none; 
   }
   
   .scrollbar-hidden::-webkit-scrollbar {
-	display: none; /* For Chrome, Safari, and other WebKit browsers */
+	display: none; 
   }
 
-  
-.in-bg{
-	background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('hero.png');
-}
+
 
 .scrollbar-hide::-webkit-scrollbar {
 	display: none;
   }
   
   .scrollbar-hide {
-	-ms-overflow-style: none; /* Internet Explorer 10+ */
-	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; 
+	scrollbar-width: none; 
   }

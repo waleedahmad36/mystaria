@@ -32,13 +32,11 @@ function App() {
 	const [isVisible, setIsVisible] = useState(isOpen);
 
 	useEffect(() => {
-		// When isOpen changes, apply a 1-second delay before changing isVisible
 		if (isOpen) {
-			setIsVisible(true); // Show instantly when opened
+			setIsVisible(true); 
 		} else {
-			// Apply a 1-second delay before hiding
 			const timeoutId = setTimeout(() => setIsVisible(false), 1000);
-			return () => clearTimeout(timeoutId); // Cleanup timeout on component unmount
+			return () => clearTimeout(timeoutId); 
 		}
 	}, [isOpen]);
 
@@ -64,7 +62,7 @@ function App() {
 					<div className={`absolute z-50 transition-opacity duration-1000 ${!isOpen && !isVisible ? 'hidden' : ''}`}>
 						<MobileNav isOpen={isOpen} onToggle={onToggle} />
 					</div>
-				)} {/* Conditional rendering of MobileNav */}
+				)} 
 				<Box maxW={
 					pathname === "/"
 						? { base: "620px", md: "full" }

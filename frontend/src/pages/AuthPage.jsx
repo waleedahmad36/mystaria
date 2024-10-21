@@ -4,9 +4,7 @@ import SignupCard from "../components/SignupCard";
 import authScreenAtom from "../atoms/authAtom";
 import { useEffect, useState } from "react";
 import { Box, Button, Flex, Input, Text, theme, useColorMode } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import useShowToast from "../hooks/useShowToast";
-import Login from "../components/Login";
 
 const AuthPage = () => {
 	const showToast = useShowToast();
