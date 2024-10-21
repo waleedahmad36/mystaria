@@ -36,6 +36,10 @@ const Actions = ({ post }) => {
 	const [likesModalVisible, setLikesModalVisible] = useState(false);
 	const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 }); 
 
+	
+
+	
+
 	const showToast = useShowToast();
 
 	// Handle like/unlike functionality
@@ -203,9 +207,10 @@ const Actions = ({ post }) => {
 				>
 					<Flex direction="column" p={4}>
 						{post.likes?.map((likedUser) => {
+							const newP = likedUser._id===user._id ? user.profilePic : 'https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png'
 							return (
 								<Flex key={likedUser._id} align="center" mb={2}>
-									<img src={likedUser.profilePic  || user.profilePic} alt={user.username} style={{ width: '24px', height: '24px', borderRadius: '50%', marginRight: '8px' }} />
+									<img src={likedUser.profilePic  || newP} alt={user.username} style={{ width: '24px', height: '24px', borderRadius: '50%', marginRight: '8px' }} />
 									<Text>{likedUser.username   || user.username}</Text>
 								</Flex>
 							);

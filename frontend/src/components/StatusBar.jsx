@@ -25,7 +25,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTimes } from 'react-icons/fa';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
@@ -59,6 +59,7 @@ const StatusBar = () => {
       try {
         const response = await axios.get('/api/status');
         setStatuses(response.data);
+        console.log(statuses[0]);
       } catch (error) {
         console.error('Error fetching statuses:', error);
       }
@@ -91,6 +92,25 @@ const StatusBar = () => {
     } catch (error) {
       console.error('Error tracking status view:', error);
     }
+  };
+
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+    setVideo(null); 
+  };
+
+  const handleVideoChange = (e) => {
+    setVideo(e.target.files[0]);
+    setImage(null); 
+  };
+
+  const clearImage = () => {
+    setImage(null);
+  };
+
+  const clearVideo = () => {
+    setVideo(null);
   };
 
   const viewStatus = (status) => {
@@ -150,6 +170,10 @@ const StatusBar = () => {
     }
   };
 
+
+  if(video){
+		console.log('video is',video)
+	}
 
   return (
     <div className="relative w-full pl-4 flex items-center group">
@@ -227,7 +251,7 @@ const StatusBar = () => {
             <ModalContent  bg={useColorModeValue('gray.100','gray.dark')}  >
               <ModalHeader>
                 <Flex  gap={4}>
-                <img src={selectedStatus?.userId?.profilePic} alt="" className="w-12 h-12 rounded-full" />
+                <img src={selectedStatus?.userId?.profilePic   ||selectedStatus?.profilePic || 'https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png'} alt="" className="w-12 h-12 rounded-full" />
                 {selectedStatus?.userId?.username}
                 </Flex>
               </ModalHeader>
@@ -246,10 +270,10 @@ const StatusBar = () => {
           </Modal>
         )}
 
-        <Modal isOpen={isCreateOpen} onClose={onCreateClose}>
+<Modal isOpen={isCreateOpen} onClose={onCreateClose}>
       <ModalOverlay />
-      <ModalContent   bg={useColorModeValue('gray.100','gray.dark')}  >
-        <ModalHeader>Upload Story🥰</ModalHeader>
+      <ModalContent bg={useColorModeValue('gray.100', 'gray.dark')}>
+        <ModalHeader>Upload Story 🥰</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <form onSubmit={handleSubmit}>
@@ -263,55 +287,99 @@ const StatusBar = () => {
               </FormControl>
 
               <FormControl id="status-visibility">
-                <Select value={visibility} onChange={(e) => setVisibility(e.target.value)}    cursor={'pointer'}  >
+                <Select
+                  value={visibility}
+                  onChange={(e) => setVisibility(e.target.value)}
+                  cursor={'pointer'}
+                >
                   <option value="public">Public</option>
                   <option value="followers">Only Followers</option>
                 </Select>
               </FormControl>
 
+              {/* Image Upload */}
               <FormControl id="status-image">
                 <Input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={handleImageChange}
+                  disabled={!!video} // Disable if video is selected
                   display="none"
                   id="image-upload"
                 />
                 <label htmlFor="image-upload">
-                  <Button as="span" leftIcon={<AiOutlineFileImage />}   cursor={'pointer'}  >
+                  <Button
+                    as="span"
+                    leftIcon={<AiOutlineFileImage />}
+                    cursor={'pointer'}
+                    isDisabled={!!video}
+                  >
                     {image ? 'Change Image' : 'Upload Image'}
                   </Button>
                 </label>
                 {image && (
-                  <Box mt={2}>
+                  <Box mt={2} position="relative">
                     <img
                       src={URL.createObjectURL(image)}
                       alt="Image Preview"
                       style={{ maxWidth: '100%', borderRadius: '8px' }}
                     />
+                    {/* Cross Icon to Clear Image */}
+                    <IconButton
+                      aria-label="Remove Image"
+                      icon={<FaTimes />}
+                      size="sm"
+                      onClick={clearImage}
+                      position="absolute"
+                      top={1}
+                      right={1}
+                      bg="red.500"
+                      color="white"
+                      _hover={{ bg: 'red.600' }}
+                    />
                   </Box>
                 )}
               </FormControl>
 
+              {/* Video Upload */}
               <FormControl id="status-video">
                 <Input
                   type="file"
                   accept="video/*"
-                  onChange={(e) => setVideo(e.target.files[0])}
+                  onChange={handleVideoChange}
+                  disabled={!!image} // Disable if image is selected
                   display="none"
                   id="video-upload"
                 />
                 <label htmlFor="video-upload">
-                  <Button as="span" leftIcon={<AiOutlineVideoCamera />}     cursor={'pointer'} >
+                  <Button
+                    as="span"
+                    leftIcon={<AiOutlineVideoCamera />}
+                    cursor={'pointer'}
+                    isDisabled={!!image}
+                  >
                     {video ? 'Change Video' : 'Upload Video'}
                   </Button>
                 </label>
                 {video && (
-                  <Box mt={2}>
+                  <Box mt={2} position="relative">
                     <video
                       controls
                       src={URL.createObjectURL(video)}
                       style={{ maxWidth: '100%', borderRadius: '8px' }}
+                    />
+                    {/* Cross Icon to Clear Video */}
+                    <IconButton
+                      aria-label="Remove Video"
+                      icon={<FaTimes />}
+                      size="sm"
+                      onClick={clearVideo}
+                      position="absolute"
+                      top={1}
+                      right={1}
+                      bg="red.500"
+                      color="white"
+                      _hover={{ bg: 'red.600' }}
                     />
                   </Box>
                 )}
@@ -328,7 +396,7 @@ const StatusBar = () => {
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button bg={theme} color={'white'} onClick={handleSubmit}   isLoading={loading} >
+          <Button bg={theme} color={'white'} onClick={handleSubmit} isLoading={loading}>
             Post
           </Button>
         </ModalFooter>
@@ -345,7 +413,7 @@ const StatusBar = () => {
               <Stack spacing={3}>
                 {viewers.map((viewer) => (
                   <Box key={viewer._id} className="flex items-center">
-                    <Avatar src={viewer.profilePic} alt={viewer.username} />
+                    <Avatar src={viewer.userId.profilePic  || viewer.profilePic   || 'https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_640.png'} alt={viewer.userId.username || viewer.username} />
                     <Text ml={2}>{viewer.username}</Text>
                   </Box>
                 ))}
