@@ -20,7 +20,7 @@ const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
-  const theme=useRecoilValue(themeAtom);
+  const theme = useRecoilValue(themeAtom);
 
   const handleSearch = async () => {
     try {
@@ -44,28 +44,30 @@ const SearchPage = () => {
   const inputBorderColor = useColorModeValue("gray.400", "gray.600");
 
   return (
-    <Container maxW="xl" centerContent>
+    <Container maxW={{ base: "90%", md: "xl" }} centerContent>
       <Box mt={8} textAlign="center" w="100%">
-        <Text fontSize="3xl" fontWeight="bold" mb={4}>
+        <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" mb={4}>
           Search Users
         </Text>
-        <Flex mb={4} w="100%">
+        <Flex mb={4} w="100%" flexDirection={{ base: "column", md: "row" }}>
           <Input
             type="text"
             placeholder="Enter name to search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            size="lg"
+            size={{ base: "lg", md: "lg" }}
+            minH={'6vh'}
             flex="1"
-            mr={2}
+            mb={{ base: 2, md: 0 }}
+            mr={{ md: 2 }}
             borderColor={inputBorderColor}
           />
           <Button
             onClick={handleSearch}
             disabled={loading}
             bg={theme}
-            color={'white'}
-            size="lg"
+            color="white"
+            size={{ base: "md", md: "lg" }}
           >
             Search
           </Button>
@@ -73,56 +75,61 @@ const SearchPage = () => {
 
         {loading && (
           <Center mt={8}>
-            <Loader/>
+            <Loader />
           </Center>
         )}
 
         {searchResult.length > 0 ? (
           <Box mt={8} w="100%">
             {searchResult.map((user) => (
-              <Link  key={user._id}  to={`/${user.username}`}  >
-              <Box
-                bg={useColorModeValue("gray.100", "gray.900")}
-                p={6}
-                mb={6}
-                rounded="md"
-                boxShadow="md"
-                w="100%"
-                cursor={"pointer"}
-              >
-                <Flex justifyContent="space-between" alignItems="center" mb={4}>
-                  <Flex alignItems="center">
-                    <Box mr={4}>
-                      {user.profilePic ? (
-                        <Avatar src={user.profilePic} alt={user.name} size="lg" />
-                      ) : (
-                        <Avatar name={user.name} size="lg" />
-                      )}
-                    </Box>
-                    <Box textAlign={"justify"}>
-                      <Text fontSize="2xl" fontWeight="bold">
-                        {user.name}
-                      </Text>
-                      <Text fontSize="md" color="gray.600">
-                        {user.username}
-                      </Text>
-                      {user.bio && (
-                        <Text fontSize="sm" color="gray.500">
-                          {user.bio}
+              <Link key={user._id} to={`/${user.username}`}>
+                <Box
+                  bg={useColorModeValue("gray.100", "gray.900")}
+                  p={4}
+                  mb={4}
+                  rounded="md"
+                  boxShadow="md"
+                  w="100%"
+                  cursor="pointer"
+                >
+                  <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    mb={4}
+                    flexDirection={{ base: "column", md: "row" }}
+                  >
+                    <Flex alignItems="center">
+                      <Box mr={4}>
+                        {user.profilePic ? (
+                          <Avatar src={user.profilePic} alt={user.name} size="lg" />
+                        ) : (
+                          <Avatar name={user.name} size="lg" />
+                        )}
+                      </Box>
+                      <Box textAlign="left">
+                        <Text fontSize={{ base: "lg", md: "2xl" }} fontWeight="bold">
+                          {user.name}
                         </Text>
-                      )}
+                        <Text fontSize="md" color="gray.600">
+                          {user.username}
+                        </Text>
+                        {user.bio && (
+                          <Text fontSize="sm" color="gray.500">
+                            {user.bio}
+                          </Text>
+                        )}
+                      </Box>
+                    </Flex>
+                    <Box mt={{ base: 2, md: 0 }}>
+                      <Badge bg={useColorModeValue('white', 'gray.dark')} mr={2} p={2} borderRadius="md">
+                        Followers: {user.followers.length}
+                      </Badge>
+                      <Badge colorScheme="white" p={2} borderRadius="md">
+                        Following: {user.following.length}
+                      </Badge>
                     </Box>
                   </Flex>
-                  <Box>
-                    <Badge bg={useColorModeValue('white','gray.dark')} mr={2} p={2} borderRadius={"md"}>
-                      Followers: {user.followers.length}
-                    </Badge>
-                    <Badge colorScheme="white" p={2} borderRadius={"md"}>
-                      Following: {user.following.length}
-                    </Badge>
-                  </Box>
-                </Flex>
-              </Box>
+                </Box>
               </Link>
             ))}
           </Box>
@@ -134,9 +141,6 @@ const SearchPage = () => {
           )
         )}
       </Box>
-
-
-      
     </Container>
   );
 };

@@ -111,7 +111,7 @@ const Post = ({ post, postedBy, activeTab }) => {
       if (data.error) {
         console.log(error)
       } else {
-        showToast("Success", "Report submitted", "success");
+        showToast("Report submitted", "Report submitted", "success");
         onClose();
         setDescription("");
       }

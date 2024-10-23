@@ -84,7 +84,7 @@ const CreatePost = () => {
 			setPostText("");
 			setImgUrl("");
 		} catch (error) {
-			showToast("Error", error, "error");
+			showToast(error || "something wrong while creating post", error || "error", "error");
 		} finally {
 			setLoading(false);
 		}

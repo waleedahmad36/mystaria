@@ -13,6 +13,7 @@ import useShowToast from '../hooks/useShowToast';
 import useFollowUnfollow from '../hooks/useFollowUnfollow';
 import MidSuggestion from './MidSuggestionButton';
 import MidSuggestionButton from './MidSuggestionButton';
+import { Link } from 'react-router-dom';
 
 
 
@@ -93,6 +94,7 @@ const MidSuggestions = () => {
             _hover={{ transform: 'scale(1.05)', boxShadow: 'xl' }}
           >
             <VStack spacing={2} align="center">
+              <Link to={`/${user.username}`}  >
               <Image
                 borderRadius="full"
                 boxSize={{ base: '60px', md: '70px' }}
@@ -100,6 +102,7 @@ const MidSuggestions = () => {
                 alt={user.name}
                 fallbackSrc="https://via.placeholder.com/70"
               />
+              </Link>
               <Text fontWeight="medium" textAlign="center" fontSize={{ base: 'sm', md: 'md' }}>
                 {user.name}
               </Text>

@@ -35,7 +35,7 @@ function App() {
 		if (isOpen) {
 			setIsVisible(true); 
 		} else {
-			const timeoutId = setTimeout(() => setIsVisible(false), 1000);
+			const timeoutId = setTimeout(() => setIsVisible(false), 500);
 			return () => clearTimeout(timeoutId); 
 		}
 	}, [isOpen]);
@@ -59,7 +59,7 @@ function App() {
 				
 
 				{user && isMobile && (
-					<div className={`absolute z-50 transition-opacity duration-1000 ${!isOpen && !isVisible ? 'hidden' : ''}`}>
+					<div className={` sticky  top-10  z-50 transition-opacity duration-1000 ${!isOpen && !isVisible ? 'hidden' : ''}`}>
 						<MobileNav isOpen={isOpen} onToggle={onToggle} />
 					</div>
 				)} 
